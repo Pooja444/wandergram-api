@@ -1,0 +1,16 @@
+name = "wandergram"
+type = "javascript"
+zone_id = ""
+account_id = "b29edc3703908d227b5e253c4d0e4764"
+route = ""
+workers_dev = true
+compatibility_date = "2021-12-29"
+
+kv_namespaces = [ 
+    { binding = "WG_KV", id = "96cd1e31f7ec48a099f94531408a61da" }
+]
+
+[build]
+command = "npm install && npm run build"
+[build.upload]
+format = "service-worker"
