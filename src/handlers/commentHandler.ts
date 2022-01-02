@@ -7,10 +7,9 @@ import { isEmpty } from "../util"
 declare const WG_KV: KVNamespace
 
 const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS",
-    'Access-Control-Allow-Headers': "Origin, Content-Type, Accept",
-    'Content-Type': "application/json"
+    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS, PUT",
+    'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
 }
 
 export const addComment = async (request: any) => {
@@ -25,7 +24,7 @@ export const addComment = async (request: any) => {
     if(id === undefined) {
         response.status = 400,
         response.message = "Post cannot be found for commenting, please try again later!"
-        return new Response(JSON.stringify(response), { headers })
+        return new Response(JSON.stringify(response), { headers: headers })
     }
 
     const postString: string | null = await WG_KV.get(id)
@@ -49,5 +48,5 @@ export const addComment = async (request: any) => {
         }
     }
 
-    return new Response(JSON.stringify(response), { headers })
+    return new Response(JSON.stringify(response), { headers: headers })
 }

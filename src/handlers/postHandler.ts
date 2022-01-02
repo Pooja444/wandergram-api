@@ -6,9 +6,9 @@ import { isEmpty } from "../util"
 declare const WG_KV: KVNamespace
 
 const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS",
-    'Access-Control-Allow-Headers': "Origin, Content-Type, Accept"
+    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS, PUT",
+    'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
 }
 
 export const getAllPosts = async () => {
@@ -20,7 +20,7 @@ export const getAllPosts = async () => {
         if(postString !== null) posts.push(JSON.parse(postString))
     }
     
-    return new Response(JSON.stringify(posts), { headers })
+    return new Response(JSON.stringify(posts), { headers: headers })
 }
 
 // change this union thing
@@ -35,7 +35,7 @@ export const getOnePost = async (request: any) => {
             postResponse = <Post>JSON.parse(postString)
         }
     }
-    return new Response(JSON.stringify(postResponse), { headers })
+    return new Response(JSON.stringify(postResponse), { headers: headers })
 }
 
 export const sendPost = async (request: any) => {
@@ -70,8 +70,9 @@ async function updatePost(post: Post) {
 
             postResponse.status = 200
             postResponse.message = "Post updated successfully!"
+            postResponse.response = post
             
-            return new Response(JSON.stringify(postResponse), { headers })
+            return new Response(JSON.stringify(postResponse), { headers: headers })
         }
     }
 }
@@ -84,10 +85,11 @@ async function newPost(post: Post, id: string) {
     }
     if(!isEmpty(post.title) && !isEmpty(post.content) && !isEmpty(post.username)) {
         await WG_KV.put(id, JSON.stringify(post))
+        postResponse.response = post
     } else {
         postResponse.status = 400
         postResponse.message = "Some required fields are missing!"
     }
-    return new Response(JSON.stringify(postResponse), { headers })
+    return new Response(JSON.stringify(postResponse), { headers: headers })
 }
 

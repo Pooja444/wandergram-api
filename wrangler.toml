@@ -6,8 +6,8 @@ route = ""
 workers_dev = true
 compatibility_date = "2021-12-29"
 
-kv_namespaces = [ 
-    { binding = "WG_KV", id = "96cd1e31f7ec48a099f94531408a61da" }
+kv_namespaces = [
+    { binding = "WG_KV", preview_id = "938007ffd3a748959b0d8f65d276226f", id = "96cd1e31f7ec48a099f94531408a61da" }
 ]
 
 [build]
