@@ -8,7 +8,9 @@ declare const WG_KV: KVNamespace
 
 const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Content-type': 'application/json'
+    'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS",
+    'Access-Control-Allow-Headers': "Origin, Content-Type, Accept",
+    'Content-Type': "application/json"
 }
 
 export const addComment = async (request: any) => {
@@ -43,6 +45,7 @@ export const addComment = async (request: any) => {
 
             response.status = 200
             response.message = "Comment added successfully to post!"
+            response.response = comment
         }
     }
 

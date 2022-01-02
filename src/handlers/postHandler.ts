@@ -7,7 +7,8 @@ declare const WG_KV: KVNamespace
 
 const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Content-type': 'application/json'
+    'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS",
+    'Access-Control-Allow-Headers': "Origin, Content-Type, Accept"
 }
 
 export const getAllPosts = async () => {
@@ -22,6 +23,7 @@ export const getAllPosts = async () => {
     return new Response(JSON.stringify(posts), { headers })
 }
 
+// change this union thing
 export const getOnePost = async (request: any) => {
     let postResponse: PostResponse | Post = {
         status: 404,
