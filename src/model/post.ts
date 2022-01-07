@@ -1,4 +1,5 @@
 import { Comment } from './comment'
+import { Vote } from './vote';
 
 export interface Post {
     id?: string
@@ -6,8 +7,8 @@ export interface Post {
     username: string
     content: string
     images?: string[]
-    upvotes?: number
-    downvotes?: number
+    votes? : Vote[]
     reaction?: string
     comments?: Comment[]
+    datetime: Date
 }

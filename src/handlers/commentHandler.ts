@@ -7,7 +7,7 @@ import { isEmpty } from "../util"
 declare const WG_KV: KVNamespace
 
 const headers = {
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'Access-Control-Allow-Origin': "https://wandergram.pages.dev",
     'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS, PUT",
     'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
 }

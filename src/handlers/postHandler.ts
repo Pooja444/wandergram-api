@@ -6,7 +6,7 @@ import { isEmpty } from "../util"
 declare const WG_KV: KVNamespace
 
 const headers = {
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'Access-Control-Allow-Origin': "https://wandergram.pages.dev",
     'Access-Control-Allow-Methods': "GET, POST, DELETE, OPTIONS, PUT",
     'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
 }
@@ -23,7 +23,6 @@ export const getAllPosts = async () => {
     return new Response(JSON.stringify(posts), { headers: headers })
 }
 
-// change this union thing
 export const getOnePost = async (request: any) => {
     let postResponse: PostResponse | Post = {
         status: 404,
@@ -40,6 +39,7 @@ export const getOnePost = async (request: any) => {
 
 export const sendPost = async (request: any) => {
     const post: Post = await request.json()
+    post.datetime = new Date()
     if(post.id !== undefined) {
         return await updatePost(post)
     } else {
